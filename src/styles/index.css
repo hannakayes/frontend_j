@@ -1,0 +1,31 @@
+/* Ensure no default margin and padding */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Light", Arial, sans-serif;
+}
+
+/* Ensure content below the navbar */
+.mainContent {
+  padding-top: 60px; /* Adjust this value according to the height of your navbar */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+}
+
+p {
+  color: #666;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none; /* Remove default outline */
+  border-color: #ffee00; /* Set border color on focus */
+}

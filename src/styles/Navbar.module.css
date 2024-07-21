@@ -1,0 +1,49 @@
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Distribute space between left and right sections */
+  align-items: center;
+  background-color: white; /* White background */
+  padding: 10px 20px; /* Add some padding */
+  color: black; /* Black text color */
+  position: fixed; /* Ensure it stays at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it is above other content */
+}
+
+.logo {
+  display: flex;
+  align-items: center; /* Center the logo vertically */
+}
+
+.homeButton {
+  height: 50px; /* Adjust the height of the logo */
+  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.homeButton:hover {
+  content: url("../assets/images/eagle_hover.png"); /* Change to hover image */
+}
+
+.navGroup {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.navLink {
+  color: black; /* Black text color */
+  text-decoration: none;
+  text-transform: uppercase; /* Make text uppercase */
+  margin-left: 20px; /* Space between items */
+}
+
+.navLink:hover {
+  text-decoration: underline;
+}
+
+.logoutButton {
+  margin-left: 20px; /* Space between logout button and other links */
+  text-transform: uppercase; /* Make text uppercase */
+  font-size: 0.875rem; /* Adjust font size if needed */
+}

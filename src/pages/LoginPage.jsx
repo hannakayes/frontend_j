@@ -1,54 +1,76 @@
-import { useContext, useState } from 'react'
-import { SessionContext } from '../contexts/SessionContext'
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { SessionContext } from "../contexts/SessionContext";
+import styles from "../styles/LoginPage.module.css";
 
 const LoginPage = () => {
-  const { setToken } = useContext(SessionContext)
+  const { setToken } = useContext(SessionContext);
+  const navigate = useNavigate(); // Initialize navigate function
 
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = async event => {
-    event.preventDefault()
-    const payload = { username, password }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const userData = {
+      username,
+      password,
+    };
+
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
-        method: 'POST',
+      const response = await fetch("http://localhost:5005/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
-      })
+        body: JSON.stringify(userData),
+      });
+
       if (response.ok) {
-        const data = await response.json()
-        console.log(data)
-        setToken(data.token)
+        const { token } = await response.json();
+        localStorage.setItem("authToken", token);
+        setToken(token);
+        console.log("Token stored in localStorage:", token);
+
+        // Redirect to  after successful login
+        navigate("/");
+      } else {
+        const error = await response.json();
+        console.error("Login error:", error.message);
       }
     } catch (error) {
-      console.log(error)
+      console.error("Fetch error:", error);
     }
-  }
+  };
 
   return (
-    <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username
-          <input value={username} onChange={event => setUsername(event.target.value)} required />
-        </label>
-        <label>
-          Password
+    <div className={styles.container}>
+      <div className={styles.formWrapper}>
+        <h1>Login</h1>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <input
-            value={password}
-            onChange={event => setPassword(event.target.value)}
+            className={styles.input}
+            placeholder="Username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
             required
-            type='password'
           />
-        </label>
-        <button type='submit'>Log In</button>
-      </form>
-    </>
-  )
-}
+          <input
+            className={styles.input}
+            placeholder="Password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            required
+            type="password"
+          />
+          <button type="submit" className={styles.button}>
+            Log In
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default LoginPage
+export default LoginPage;

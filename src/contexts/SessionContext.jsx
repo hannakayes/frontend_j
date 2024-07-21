@@ -1,82 +1,118 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useState } from "react";
 
-export const SessionContext = createContext()
+export const SessionContext = createContext();
 
 const SessionContextProvider = ({ children }) => {
-  const [token, setToken] = useState()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
+  const [token, setToken] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const removeToken = () => {
-    window.localStorage.removeItem('authToken')
-  }
+    console.log("Removing token from localStorage");
+    window.localStorage.removeItem("authToken");
+  };
 
-  const verifyToken = async tokenToVerify => {
+  const verifyToken = async (tokenToVerify) => {
+    console.log("Verifying token:", tokenToVerify);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/verify`, {
-        headers: {
-          Authorization: `Bearer ${tokenToVerify}`,
-        },
-      })
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/auth/verify`,
+        {
+          headers: {
+            Authorization: `Bearer ${tokenToVerify}`,
+          },
+        }
+      );
+      console.log("Token verification response status:", response.status);
       if (response.status === 200) {
-        setToken(tokenToVerify)
-        setIsAuthenticated(true)
-        setIsLoading(false)
+        setToken(tokenToVerify);
+        setIsAuthenticated(true);
+        setIsLoading(false);
       } else {
-        setIsLoading(false)
-        removeToken()
+        console.log("Token verification failed with status:", response.status);
+        setIsLoading(false);
+        removeToken();
       }
     } catch (error) {
-      console.log(error)
-      setIsLoading(false)
-      removeToken()
+      console.error("Error verifying token:", error);
+      setIsLoading(false);
+      removeToken();
     }
-  }
+  };
 
   useEffect(() => {
-    const localToken = window.localStorage.getItem('authToken')
+    console.log("Checking localStorage for token");
+    const localToken = window.localStorage.getItem("authToken");
     if (localToken) {
-      verifyToken(localToken)
+      console.log("Token found in localStorage:", localToken);
+      verifyToken(localToken);
     } else {
-      setIsLoading(false)
+      console.log("No token found in localStorage");
+      setIsLoading(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (token) {
-      window.localStorage.setItem('authToken', token)
-      setIsAuthenticated(true)
+      console.log("Setting token to localStorage:", token);
+      window.localStorage.setItem("authToken", token);
+      setIsAuthenticated(true);
     }
-  }, [token])
+  }, [token]);
 
-  const fetchWithToken = async (endpoint, method = 'GET', payload) => {
+  const fetchWithToken = async (endpoint, method = "GET", payload) => {
+    console.log(
+      `Fetching ${method} request to ${
+        import.meta.env.VITE_API_URL
+      }/api${endpoint} with payload:`,
+      payload
+    );
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api${endpoint}`, {
-        method,
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body: JSON.stringify(payload),
-      })
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api${endpoint}`,
+        {
+          method,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: method === "POST" ? JSON.stringify(payload) : undefined,
+        }
+      );
+      console.log("API response status:", response.status);
       if (response.ok) {
-        return response.json()
+        const data = await response.json();
+        console.log("API response data:", data);
+        return data;
+      } else {
+        console.error("API request failed with status:", response.statusText);
       }
     } catch (error) {
-      console.log(error)
+      console.error("API request error:", error);
     }
-  }
+  };
 
   const handleLogout = () => {
-    removeToken()
-    setToken()
-    setIsAuthenticated(false)
-  }
+    console.log("Handling logout");
+    removeToken();
+    setToken();
+    setIsAuthenticated(false);
+  };
 
   return (
     <SessionContext.Provider
-      value={{ isAuthenticated, isLoading, token, setToken, fetchWithToken, handleLogout }}
+      value={{
+        isAuthenticated,
+        isLoading,
+        token,
+        setToken,
+        fetchWithToken,
+        handleLogout,
+      }}
     >
       {children}
     </SessionContext.Provider>
-  )
-}
+  );
+};
 
-export default SessionContextProvider
+export default SessionContextProvider;

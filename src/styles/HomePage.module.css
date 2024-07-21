@@ -1,0 +1,35 @@
+.container {
+  text-align: center;
+  padding: 20px;
+  background-image: url("../assets/images/background_oystercatcher.jpg"); /* Update this path to your actual image */
+  background-size: cover; /* Ensure the image covers the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-attachment: fixed; /* Make the background image fixed */
+  min-height: 100vh; /* Ensure the container covers the full viewport height */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  position: relative; /* Ensure relative positioning */
+  margin: 0; /* Remove default margin */
+  font-family: "Inter", Arial, sans-serif; /* Apply Mantine default font */
+}
+
+.content {
+  background-color: white; /* White background for the content */
+  padding: 20px;
+  border-radius: 8px; /* Optional: add rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better visibility */
+  max-width: 600px; /* Adjust the width to be narrower */
+  width: 100%; /* Full width up to max-width */
+}
+
+.heading {
+  color: #333;
+  margin: 0 0 10px; /* Remove top margin and add bottom margin */
+}
+
+p {
+  color: #666; /* Adjust text color if needed */
+  margin: 0; /* Remove default margin */
+}

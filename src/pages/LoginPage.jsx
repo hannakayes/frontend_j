@@ -1,15 +1,23 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../contexts/SessionContext";
 import styles from "../styles/LoginPage.module.css";
-import Navbar from "../components/Navbar"; // Import Navbar component
+import Navbar from "../components/Navbar";
 
 const LoginPage = () => {
-  const { setToken, isAuthenticated } = useContext(SessionContext); // Get isAuthenticated
-  const navigate = useNavigate(); // Initialize navigate function
+  const { token, setToken, isAuthenticated } = useContext(SessionContext); // Get token and isAuthenticated
+  const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // State to store error messages
+
+  useEffect(() => {
+    // Redirect if already authenticated
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,13 +42,15 @@ const LoginPage = () => {
         setToken(token);
         console.log("Token stored in localStorage:", token);
 
-        // Redirect to after successful login
+        // Redirect to home or intended page after successful login
         navigate("/");
       } else {
         const error = await response.json();
+        setErrorMessage(error.message || "Login failed. Please try again.");
         console.error("Login error:", error.message);
       }
     } catch (error) {
+      setErrorMessage("An error occurred. Please try again later.");
       console.error("Fetch error:", error);
     }
   };
@@ -75,6 +85,8 @@ const LoginPage = () => {
               Log In
             </button>
           </form>
+          {errorMessage && <p className={styles.error}>{errorMessage}</p>}{" "}
+          {/* Display error messages */}
         </div>
       </div>
     </>

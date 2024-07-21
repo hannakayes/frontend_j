@@ -1,11 +1,6 @@
 .container {
   text-align: center;
-  padding: 20px;
-  background-image: url("../assets/images/background_oystercatcher.jpg"); /* Update this path to your actual image */
-  background-size: cover; /* Ensure the image covers the entire container */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-attachment: fixed; /* Make the background image fixed */
+  padding: 0px;
   min-height: 100vh; /* Ensure the container covers the full viewport height */
   display: flex;
   justify-content: center; /* Center horizontally */
@@ -13,6 +8,17 @@
   position: relative; /* Ensure relative positioning */
   margin: 0; /* Remove default margin */
   font-family: "Inter", Arial, sans-serif; /* Apply Mantine default font */
+  overflow: hidden; /* Hide overflow for a cleaner look */
+}
+
+.backgroundVideo {
+  position: absolute; /* Position the video absolutely */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure the video covers the container */
+  z-index: -1; /* Place the video behind the content */
 }
 
 .content {
@@ -20,8 +26,10 @@
   padding: 20px;
   border-radius: 8px; /* Optional: add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better visibility */
-  max-width: 600px; /* Adjust the width to be narrower */
+  max-width: 30rem; /* Adjust the width to be narrower */
   width: 100%; /* Full width up to max-width */
+  position: relative; /* Ensure content is on top of the video */
+  z-index: 1; /* Ensure content stays on top */
 }
 
 .heading {

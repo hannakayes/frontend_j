@@ -2,7 +2,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Helvetica Light", Arial, sans-serif;
+  font-family: "Inter", Arial, sans-serif; /* Apply Mantine's standard font */
+  overflow: hidden; /* Prevent scrolling if desired */
 }
 
 /* Ensure content below the navbar */
@@ -17,10 +18,13 @@ h4,
 h5,
 h6 {
   color: #333;
+  font-family: "Inter", Arial, sans-serif; /* Ensure headings use the correct font */
+  font-weight: normal;
 }
 
 p {
   color: #666;
+  font-family: "Inter", Arial, sans-serif; /* Ensure paragraphs use the correct font */
 }
 
 input:focus,

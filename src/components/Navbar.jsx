@@ -35,14 +35,26 @@ const Navbar = () => {
       <Group position="right" spacing="lg" className={styles.navGroup}>
         {isAuthenticated && (
           <>
-            <Link to="/profile" className={styles.navLink}>
-              Profile
+            <Link to="/kunst" className={styles.navLink}>
+              Kunst
             </Link>
-            <Link to="/recipes" className={styles.navLink}>
+            <Link to="/rezepte" className={styles.navLink}>
               Rezepte
             </Link>
-            <Link to="/recipes/new" className={styles.navLink}>
-              Add a new recipe
+            <Link to="/musik" className={styles.navLink}>
+              Musik
+            </Link>
+            <Link to="/filme" className={styles.navLink}>
+              Filme
+            </Link>
+            <Link to="/serien" className={styles.navLink}>
+              Serien
+            </Link>
+            <Link to="/dokus" className={styles.navLink}>
+              Dokus
+            </Link>
+            <Link to="/bingo" className={styles.navLink}>
+              Bingo
             </Link>
             <Button
               className={styles.logoutButton}

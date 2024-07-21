@@ -3,12 +3,16 @@ import { useContext } from "react";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage";
+import KunstPage from "./pages/KunstPage";
 import PrivateRoute from "./components/PrivateRoute";
 import AllRecipesPage from "./pages/AllRecipesPage";
 import RecipesDetailsPage from "./pages/RecipeDetailsPage";
-import NewRecipePage from "./pages/NewRecipePage";
+import MusikPage from "./pages/MusikPage";
 import HomePage from "./pages/HomePage";
+import FilmePage from "./pages/FilmePage";
+import SerienPage from "./pages/SerienPage";
+import DokusPage from "./pages/DokusPage";
+import BingoPage from "./pages/BingoPage";
 import { SessionContext } from "./contexts/SessionContext";
 
 // Import your custom CSS file for global styles
@@ -33,15 +37,15 @@ function App() {
           />
           <Route path="/login" element={<LoginPage />} />
           <Route
-            path="/profile"
+            path="/kunst"
             element={
               <PrivateRoutes>
-                <ProfilePage />
+                <KunstPage />
               </PrivateRoutes>
             }
           />
           <Route
-            path="/recipes"
+            path="/rezepte"
             element={
               <PrivateRoutes>
                 <AllRecipesPage />
@@ -49,7 +53,7 @@ function App() {
             }
           />
           <Route
-            path="/recipes/:recipeId"
+            path="/rezepte/:recipeId"
             element={
               <PrivateRoutes>
                 <RecipesDetailsPage />
@@ -57,10 +61,42 @@ function App() {
             }
           />
           <Route
-            path="/recipes/new"
+            path="/musik"
             element={
               <PrivateRoutes>
-                <NewRecipePage />
+                <MusikPage />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/filme"
+            element={
+              <PrivateRoutes>
+                <FilmePage />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/serien"
+            element={
+              <PrivateRoutes>
+                <SerienPage />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/dokus"
+            element={
+              <PrivateRoutes>
+                <DokusPage />
+              </PrivateRoutes>
+            }
+          />
+          <Route
+            path="/bingo"
+            element={
+              <PrivateRoutes>
+                <BingoPage />
               </PrivateRoutes>
             }
           />

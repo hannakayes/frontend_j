@@ -17,13 +17,11 @@ h3,
 h4,
 h5,
 h6 {
-  color: #333;
   font-family: "Inter", Arial, sans-serif; /* Ensure headings use the correct font */
   font-weight: normal;
 }
 
 p {
-  color: #666;
   font-family: "Inter", Arial, sans-serif; /* Ensure paragraphs use the correct font */
 }
 

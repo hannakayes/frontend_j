@@ -26,7 +26,7 @@
   padding: 20px;
   border-radius: 8px; /* Optional: add rounded corners */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better visibility */
-  max-width: 30rem; /* Adjust the width to be narrower */
+  max-width: 20rem; /* Adjust the width to be narrower */
   width: 100%; /* Full width up to max-width */
   position: relative; /* Ensure content is on top of the video */
   z-index: 1; /* Ensure content stays on top */
@@ -37,7 +37,7 @@
   margin: 0 0 10px; /* Remove top margin and add bottom margin */
 }
 
-p {
+.content p {
   color: #666; /* Adjust text color if needed */
   margin: 0; /* Remove default margin */
 }

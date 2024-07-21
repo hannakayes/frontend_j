@@ -1,25 +1,35 @@
+/* Container for the whole page */
 .container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Helvetica", sans-serif; /* Apply Helvetica font */
+  background: linear-gradient(
+    135deg,
+    #f5a623,
+    #f5a6b6
+  ); /* Gradient background */
+  margin-top: -60px; /* Adjust this value if needed */
 }
 
+/* Wrapper for the form */
 .formWrapper {
   width: 100%;
   max-width: 400px; /* Adjust as needed */
-  background-color: #fff; /* Optional: background color */
+  background-color: #fff; /* Background color for form */
   padding: 20px;
-  border-radius: 8px; /* Optional: rounded corners */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
 }
 
+/* Form styling */
 .form {
   display: flex;
   flex-direction: column;
 }
 
+/* Input field styling */
 .input {
   width: 100%;
   padding: 10px;
@@ -30,21 +40,24 @@
   font-size: 16px;
 }
 
+/* Placeholder text styling */
 .input::placeholder {
   color: #888; /* Color of the placeholder text */
   font-size: 16px; /* Match font size with input text */
 }
 
+/* Button styling */
 .button {
   padding: 10px;
   border: none;
-  background-color: #007bff;
+  background-color: #ff69b4; /* Pink background color */
   color: #fff;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
 }
 
+/* Button hover effect */
 .button:hover {
-  background-color: #0056b3;
+  background-color: #ff1493; /* Darker pink background color on hover */
 }

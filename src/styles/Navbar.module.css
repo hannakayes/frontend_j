@@ -1,7 +1,8 @@
+/* Navbar styling */
 .navbar {
   display: flex;
   justify-content: space-between; /* Distribute space between left and right sections */
-  align-items: center;
+  align-items: center; /* Ensure items are vertically centered */
   background-color: white; /* White background */
   padding: 10px 20px; /* Add some padding */
   color: black; /* Black text color */
@@ -12,30 +13,42 @@
   z-index: 1000; /* Ensure it is above other content */
 }
 
+/* Hidden navbar */
+.hidden {
+  display: none;
+}
+
+/* Logo styling */
 .logo {
   display: flex;
   align-items: center; /* Center the logo vertically */
 }
 
+/* Home Button styling */
 .homeButton {
   height: 50px; /* Adjust the height of the logo */
-  transition: opacity 0.3s ease; /* Smooth transition for hover effect */
+  width: auto; /* Maintain aspect ratio */
+  transition: opacity 0.3s ease, filter 0.3s ease; /* Smooth transition for hover effect */
 }
 
-.homeButton:hover {
+/* Change image on hover */
+.logo:hover .homeButton {
   content: url("../assets/images/eagle_hover.png"); /* Change to hover image */
 }
 
+/* Navbar links and buttons */
 .navGroup {
   display: flex;
-  justify-content: flex-end; /* Align items to the right */
+  align-items: center; /* Ensure all items in the group are vertically centered */
+  gap: 20px; /* Space between items */
 }
 
-.navLink {
-  color: black; /* Black text color */
+.navLink,
+.logoutButton {
   text-decoration: none;
   text-transform: uppercase; /* Make text uppercase */
-  margin-left: 20px; /* Space between items */
+  color: black; /* Black text color */
+  font-size: 0.875rem; /* Ensure font size is consistent */
 }
 
 .navLink:hover {
@@ -43,7 +56,14 @@
 }
 
 .logoutButton {
-  margin-left: 20px; /* Space between logout button and other links */
-  text-transform: uppercase; /* Make text uppercase */
-  font-size: 0.875rem; /* Adjust font size if needed */
+  border: 1px solid black; /* Black border */
+  color: black; /* Black text color */
+  background-color: transparent; /* Transparent background */
+  padding: 5px 10px; /* Padding to ensure proper button size */
+  border-radius: 1.5rem; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+.logoutButton:hover {
+  background-color: #f5f5f5; /* Light grey background on hover */
 }

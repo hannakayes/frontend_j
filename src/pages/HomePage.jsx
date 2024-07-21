@@ -10,11 +10,11 @@ const HomePage = () => {
         Your browser does not support the video tag.
       </video>
       <div className={styles.content}>
-        <h1 className={styles.heading}>Hallo Janosch!</h1>
+        <h1 className={styles.heading}>Hallo Janosch.</h1>
         <p>
-          Auf dieser Seite findest du eine Sammlung mit schönen Dingen. Sie ist
-          nur für dich gedacht, wenn du gerade neue Eindrücke oder Zerstreuung
-          brauchst.
+          Willkommen auf deiner eigenen Website. Hier kannst du eine Sammlung
+          mit schönen Dingen finden, wenn du gerade neue Eindrücke oder
+          Zerstreuung brauchst – ohne das diese in einer Ecke verstauben.
         </p>
       </div>
     </div>
